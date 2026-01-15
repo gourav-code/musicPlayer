@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>MusicApp</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script src="eventListener.js"></script>
+    </head>
+    <body class="mainBody bg-zinc-900 text-white">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <h1 class="mx-125 my-10 font-bold text-3xl"> 🎵 SONGS LIST </h1>
+        <div class="">
+            <% files.forEach((val, idx) => { %>
+                <% element_id = 'songs'.concat("_", idx.toString())%>
+                <h3 id="<%= element_id %>" class="my-songs flex justify-center block rounded-lg w-300  mt-1 ml-6 px-5 py-2 bg-zinc-800"><%=val%></h3>
+            <%})%> 
+        </div>
+        <form id="myForm" action="/songPlayer" method="POST">
+            <input type="hidden" name="itemId" id="itemId">
+        </form>
+    </body>
+</html>
