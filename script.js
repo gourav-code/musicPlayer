@@ -14,34 +14,33 @@ const PORT = 3000;
 
 
 app.get("/favicon.ico", (req, res) => res.status(204));
-app.get('/songs/:songName', async (req, res) => {
+app.get('/cover/:songName', async (req, res) => {
     // console.log("kingsley conman");
     try{
         const songName = req.params.songName;
         const filePath = path.join(songsFolderPath, songName);
         const metaData = await metaM.parseFile(filePath);
-        console.log(metaData);
+        // console.log(metaData);
         const pic = metaData.common.picture?.[0];
-        console.log(pic);
-        let cover = null;
+        // console.log(pic);
+        // let cover = null;
         if (pic) {
-            const buffer = Buffer.from(pic.data);
-            const base64 = buffer.toString("base64");
-            cover = `data:image/jpeg;base64,${base64}`;
+            res.set("Content-Type", pic.format);
+            res.send(Buffer.from(pic.data));
+            // const base64 = buffer.toString("base64");
+            // cover = `data:image/jpeg;base64,${base64}`;
         }
+        else {
+            return res.sendStatus(404);
+        }
+
         // console.log("i am outside pic ");
-        res.json({
-            title: metaData.common.title || req.params.songName,
-            artist: metaData.common.artist || "Unknown",
-            album: metaData.common.album || "",
-            cover
-        });
+        
     } catch (err) {
         // console.log("not happening");
         res.status(500).json({ error: "Metadata read failed" });
     }
 })
-
 app.use(express.static(path.join(__dirname + '/public')));
 
 app.get('/', (req, res) => {
