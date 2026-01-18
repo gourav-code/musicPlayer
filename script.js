@@ -25,7 +25,12 @@ app.get('/cover/:songName', async (req, res) => {
         // console.log(pic);
         // let cover = null;
         if (pic) {
-            res.set("Content-Type", pic.format);
+            res.set({
+                "Content-Type": pic.format,
+                "duration": metaData.format.duration,
+                'artists': metaData.common.artist,
+                'album': metaData.common.album
+            });
             res.send(Buffer.from(pic.data));
             // const base64 = buffer.toString("base64");
             // cover = `data:image/jpeg;base64,${base64}`;
@@ -84,8 +89,17 @@ app.get("/stream/:songName", (req, res) => {
 });
 
 app.post('/songPlayer', (req, res) => {
-    // console.log(req.body.itemId);
-    res.render("songPlay", { songName: req.body.itemId, path: songsFolderPath });
+    let songName = req.body.itemId;
+    // songName = songName.split(".mp3")[0];
+    res.redirect(`/songPlayer/${encodeURIComponent(songName)}`);
 })
+
+app.get('/songPlayer/:songName', (req, res) => {
+    let songName = req.params.songName;
+    // songName = songName.concat("", ".mp3");
+    res.render("songPlay", {
+        songName, path: songsFolderPath
+    });
+});
 
 app.listen(PORT);

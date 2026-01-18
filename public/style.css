@@ -1,0 +1,146 @@
+:root {
+    --primary-bg: #0a0a0f;
+    --secondary-bg: #1a1a2e;
+    --accent-color: #00d4ff;
+    --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--primary-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.music-player {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.player-card {
+    background: var(--secondary-bg);
+    border-radius: 20px;
+    padding: 30px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.album-art img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.track-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.track-title {
+    color: #fff;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.track-artist {
+    color: #b8b8d1;
+    font-size: 0.9rem;
+}
+
+.controls {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.controls button {
+    background: var(--accent-color);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.controls button:hover {
+    transform: scale(1.1);
+}
+
+.progress-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.progress-container-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+
+.progress-container {
+    position: relative;
+    width: 100%;
+    height: 6px;
+    margin: 8px 0;
+}
+
+
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--gradient-accent);
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+.progress-handle {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 16px;
+    height: 16px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 8px rgba(0,212,255,0.5);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#currentTime, #duration {
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.volume-control {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.volume-control input[type="range"] {
+    width: 100%;
+}

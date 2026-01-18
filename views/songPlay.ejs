@@ -10,21 +10,84 @@
         <title>Song <%= songName  %></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href=""style.css>
+        <link rel="stylesheet" href="/style.css">
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     </head>
-    <body class="bg-zinc-800 text-white">
+    <body class="player-container bg-zinc-800 text-white">
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div id="player" data-song="<%=songName%>" data-path="<%=path%>">
-            <img id="cover" width="200">
-            <h1 class="flex justify-center ml-6 font-bold text-3xl"> <%= songName %></h1>
 
-            <button type="button" id='play' class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5">Play</button>
-            <button type="button" id='stop'class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5">Stop</button>
+        <!-- <nav>
+            <ul>
+                <li class="brand"> <img src=""> </li>
+            </ul>
+        </nav> -->
+        <!-- <img id="cover" width="200"> -->
+        <div id="player" data-song="<%=songName%>" data-path="<%=path%>">
+            
+            <!-- <h1 class="flex justify-center ml-6 font-bold text-3xl"> <%= songName %></h1> -->
+
+            <!-- <button type="button" id='play' class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5">Play</button> -->
+            <!-- <button type="button" id='stop'class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5">Stop</button> -->
             
         </div>
-        <script src="songScript.js"></script>
+        <section class="music-player">
+            <div class="player-card">
+                <div class="album-art">
+                    <img id="cover" alt="Album Art" width="200px">
+                </div>
+                <div class="track-info">
+                    <h2 class="track-title"><%= songName %></h2>
+                    <span class="track-artist">Artist Name</span>
+                </div>
+                <!-- <audio id="audio" src="/audio/song.mp3"></audio> -->
+                <div class="controls">
+                    <button id="shuffleBtn" class="control-btn secondary">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
+                        </svg>
+                    </button>
+                    <button id="prevBtn" class="control-btn secondary">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                        </svg>
+                    </button>
+                    <button id="playPauseBtn" class="control-btn primary">
+                        <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                    </button>
+                    <button id="nextBtn" class="control-btn secondary">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                        </svg>
+                    </button>
+                    <button id="repeatBtn" class="control-btn secondary">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="progress-container-wrapper">
+                    <span id="currentTime">0:00</span>
+                    <div class="progress-section">
+                        <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress-fill" id="progressFill"></div>
+                            <div class="progress-handle" id="progressHandle"></div>
+                        </div>
+                        </div>
+                    </div>
+                    <span id="totalTime" class="time">3:42</span>
+                </div>
+            </div>
+        </section>
+
+        <script src="/songScript.js"></script>
     </body>
 </html>
