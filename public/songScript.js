@@ -64,7 +64,7 @@ class MusicPlayer{
     // this.prevBtn.addEventListener('click', () => this.previousTrack());
     // this.nextBtn.addEventListener('click', () => this.nextTrack());
     // this.shuffleBtn.addEventListener('click', () => this.toggleShuffle());
-    // this.repeatBtn.addEventListener('click', () => this.toggleRepeat());
+    this.repeatBtn.addEventListener('click', () => this.toggleRepeat());
     
     // Progress bar
     this.progressBar.addEventListener('click', (e) => {
@@ -218,13 +218,14 @@ class MusicPlayer{
   
   handleTrackEnd() {
     if (this.isRepeating) {
-      this.resetProgress();
+      // this.resetProgress();
       this.play();
     } else {
-      this.nextTrack();
-      if (this.isPlaying) {
-        this.play();
-      }
+      this.isPlaying = false;
+      // this.nextTrack();
+      // if (this.isPlaying) {
+      //   this.play();
+      // }
     }
   }
 
